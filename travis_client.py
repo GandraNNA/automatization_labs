@@ -21,8 +21,10 @@ class TravisClient:
         }
 
     def _get_auth_token(self):
-        response = requests.post(self.base_uri + '/auth/github',
-                                 params={"github_token": self.github_token})
+        response = requests.post(
+            self.base_uri + '/auth/github',
+            params={"github_token": self.github_token}
+        )
         if not response.ok:
             raise TravisException("Travis authentication error")
         content = response.json()

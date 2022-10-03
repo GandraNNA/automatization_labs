@@ -1,9 +1,12 @@
 import imaplib
 import smtplib
 
-from email.header import Header as mkh  # Функция кодирования заголовков для письма
-from email.mime.multipart import MIMEMultipart  # Модуль формирования сообщений из нескольких частей
-from email.mime.text import MIMEText  # Модуль простого текстового сообщения
+# Функция кодирования заголовков для письма
+from email.header import Header as mkh
+# Модуль формирования сообщений из нескольких частей
+from email.mime.multipart import MIMEMultipart
+# Модуль простого текстового сообщения
+from email.mime.text import MIMEText
 
 
 class YandexMail:
@@ -24,7 +27,8 @@ class YandexMail:
     def create_imap_client(self):
         client = imaplib.IMAP4_SSL(YandexMail.IMAP_SERVER, YandexMail.IMAP_PORT)
         client.login(self.login, self.password)
-        client.select()  # выбираем папку, по умолчанию - INBOX
+        # выбираем папку, по умолчанию - INBOX
+        client.select()
         return client
 
     def create_smpt_client(self):

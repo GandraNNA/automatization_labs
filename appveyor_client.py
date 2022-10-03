@@ -26,7 +26,8 @@ class AppVeyorClient:
     def _get_variant_name_from_job_log(log_text):
         pattern = 'Task ([0-9]+):'
         match = re.search(pattern, log_text, re.IGNORECASE)
-        variant_name = int(match.group(1)) if match is not None else None
+        variant_name = int(
+            match.group(1)) if match is not None else None
         return variant_name
 
     def __init__(self, api_token, org_name, project_name):
@@ -50,13 +51,15 @@ class AppVeyorClient:
         job_status = job_data['status']
         job_succeeded = (job_status == 'success')
         job_finished_date1 = parser.parse(job_data['finished'])
-        job_finished_date = job_finished_date1.replace(microsecond=0).isoformat()
+        job_finished_date = job_finished_date1.replace(
+            microsecond=0).isoformat()
         variant_name = None
 
         if job_succeeded:
             job_id = job_data['jobId']
             log_text = self._get_job_log(job_id)
-            variant_name = AppVeyorClient._get_variant_name_from_job_log(log_text)
+            variant_name = AppVeyorClient._get_variant_name_from_job_log(
+                log_text)
 
         return variant_name, job_succeeded, job_finished_date
 
@@ -78,7 +81,8 @@ class AppVeyorClient:
         return response.text
 
     def _get_project_info(self, project_name):
-        entity_uri = 'projects/%s/%s' % (self._organization, project_name)
+        entity_uri = 'projects/%s/%s' % (
+        self._organization, project_name)
         return self._get_json(entity_uri)
 
     def _get_job_log(self, job_id):

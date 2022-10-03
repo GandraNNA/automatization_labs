@@ -4,7 +4,7 @@ import requests
 
 
 class GithubAPI:
-    """получения данных с сервиса Github."""
+    """Получение данных с сервиса Github."""
 
     def __init__(self, token=None, organization=None, repo=None):
         self.token = token
@@ -26,8 +26,9 @@ class GithubAPI:
         return self.repo.private
 
     def get_checks_info(self, commit_sha):
-        # Почему не через self.git???
-        url = 'https://api.github.com/repos/' + self.org.name + '/' + self.repo.name + '/commits/' + commit_sha + '/check-runs'
+        url = ('https://api.github.com/repos/' + self.org.name + '/' +
+               self.repo.name + '/commits/' + commit_sha +
+               '/check-runs')
         response = requests.get(url, headers=self.request_headers)
 
         check_runs = None
@@ -36,7 +37,7 @@ class GithubAPI:
         return check_runs
 
     def get_latest_commit_sha(self, branch='master'):
-        """последний коммит в ветке"""
+        """Последний коммит в ветке."""
         branch = self.repo.get_branch(branch)
         latest_commit = branch.commit
         return latest_commit.sha
