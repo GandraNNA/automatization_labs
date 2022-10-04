@@ -123,7 +123,7 @@ Google-таблицу. Пример правильного письма и вы�
 ### Клонировать репозиторий:
 
 ```
-git clone https://github.com/GandraNNA/api_yamdb.git
+git clone https://github.com/GandraNNA/automatization_labs.git
 ```
 
 ### Обновить pip:
